@@ -1,0 +1,35 @@
+[
+  {
+    "doctor_id": "doc-001",
+    "doctor_name": "Dr Sharma",
+    "specialty": "cardiologist",
+    "hospital": "Apollo",
+    "availability": {
+      "today": ["10 am", "11 am", "2 pm"],
+      "tomorrow": ["10 am", "2 pm", "4 pm"],
+      "friday": ["10:30 am", "2:00 pm", "4:30 pm"]
+    }
+  },
+  {
+    "doctor_id": "doc-002",
+    "doctor_name": "Dr Meena",
+    "specialty": "dermatologist",
+    "hospital": "Apollo",
+    "availability": {
+      "today": ["12 pm", "2 pm"],
+      "tomorrow": ["11 am", "4 pm"],
+      "friday": ["10 am", "12 pm"]
+    }
+  },
+  {
+    "doctor_id": "doc-003",
+    "doctor_name": "Dr Arul",
+    "specialty": "pediatrician",
+    "hospital": "City Care",
+    "availability": {
+      "today": ["10 am", "1 pm"],
+      "tomorrow": ["9 am", "11 am", "3 pm"],
+      "friday": ["11 am", "2 pm"]
+    }
+  }
+]

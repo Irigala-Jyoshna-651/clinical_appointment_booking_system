@@ -1,0 +1,26 @@
+[
+  {
+    "id": "apt-37dd6b10",
+    "patient_id": "pat-001",
+    "doctor_id": "doc-001",
+    "doctor_name": "Dr Sharma",
+    "specialty": "cardiologist",
+    "hospital": "Apollo",
+    "date": "tomorrow",
+    "time": "10 am",
+    "status": "cancelled",
+    "created_at": "2026-04-21T07:44:34.967481+00:00"
+  },
+  {
+    "id": "apt-95ae4b0d",
+    "patient_id": "pat-demo",
+    "doctor_id": "doc-001",
+    "doctor_name": "Dr Sharma",
+    "specialty": "cardiologist",
+    "hospital": "Apollo",
+    "date": "tomorrow",
+    "time": "10 am",
+    "status": "booked",
+    "created_at": "2026-04-21T07:53:17.224134+00:00"
+  }
+]

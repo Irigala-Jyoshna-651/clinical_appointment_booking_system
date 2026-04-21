@@ -1,0 +1,188 @@
+{
+  "pat-001": [
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Book appointment with cardiologist tomorrow at 10 am",
+      "agent_text": "हिंदी सहायता: Your appointment with Dr Sharma is booked for tomorrow at 10 am. Preferred hospital on file: Apollo.",
+      "language": "hi",
+      "action": "book",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.05,
+        "reasoning": 1.06,
+        "tool_execution": 29.18,
+        "tts": 13.03
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Check availability for dermatologist tomorrow",
+      "agent_text": "हिंदी सहायता: Available slots for dermatologist on tomorrow: Dr Meena at 11 am, Dr Meena at 4 pm. Suggested options: Dr Meena at 11 am, Dr Meena at 4 pm.",
+      "language": "hi",
+      "action": "check_availability",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.07,
+        "reasoning": 0.12,
+        "tool_execution": 19.68,
+        "tts": 8.97
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Cancel my appointment with dr sharma in apollo hospital",
+      "agent_text": "हिंदी सहायता: Appointment apt-37dd6b10 has been cancelled. Preferred hospital on file: Apollo.",
+      "language": "hi",
+      "action": "cancel",
+      "latency_ms": {
+        "stt": 0.0,
+        "language_detection": 0.09,
+        "reasoning": 0.14,
+        "tool_execution": 29.81,
+        "tts": 16.51
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Unable to transcribe audio input.",
+      "agent_text": "हिंदी सहायता: Please tell me if you want to book, reschedule, cancel, or check an appointment.",
+      "language": "hi",
+      "action": "clarify",
+      "latency_ms": {
+        "stt": 0.68,
+        "language_detection": 0.06,
+        "reasoning": 0.1,
+        "tool_execution": 0.07,
+        "tts": 21.49
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Unable to transcribe audio input.",
+      "agent_text": "हिंदी सहायता: Please tell me if you want to book, reschedule, cancel, or check an appointment.",
+      "language": "hi",
+      "action": "clarify",
+      "latency_ms": {
+        "stt": 0.55,
+        "language_detection": 0.04,
+        "reasoning": 0.07,
+        "tool_execution": 0.04,
+        "tts": 10.36
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Unable to transcribe audio input.",
+      "agent_text": "हिंदी सहायता: Please tell me if you want to book, reschedule, cancel, or check an appointment.",
+      "language": "hi",
+      "action": "clarify",
+      "latency_ms": {
+        "stt": 0.84,
+        "language_detection": 0.05,
+        "reasoning": 0.1,
+        "tool_execution": 0.05,
+        "tts": 9.24
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Repo Nagu doctor Sharma",
+      "agent_text": "తెలుగు సహాయం: Which doctor or specialty would you like to see? Which date would you prefer? What time works best for you?",
+      "language": "te",
+      "action": "collect_details",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.05,
+        "reasoning": 0.13,
+        "tool_execution": 0.11,
+        "tts": 9.16
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Dermatologist to 10:00 a.m. appointment book chahiye",
+      "agent_text": "हिंदी सहायता: Which date would you prefer? What time works best for you?",
+      "language": "hi",
+      "action": "collect_details",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.05,
+        "reasoning": 0.15,
+        "tool_execution": 0.15,
+        "tts": 9.8
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Unable to transcribe audio input.",
+      "agent_text": "हिंदी सहायता: Which date would you prefer? What time works best for you?",
+      "language": "hi",
+      "action": "collect_details",
+      "latency_ms": {
+        "stt": 2.21,
+        "language_detection": 0.05,
+        "reasoning": 0.1,
+        "tool_execution": 0.05,
+        "tts": 6.88
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Book appointment with cardiologist tomorrow at 10 am",
+      "agent_text": "हिंदी सहायता: That slot is already booked. Alternatives are: 2 pm, 4 pm. Preferred hospital on file: Apollo. Suggested options: 2 pm, 4 pm.",
+      "language": "hi",
+      "action": "book",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.12,
+        "reasoning": 0.17,
+        "tool_execution": 26.7,
+        "tts": 10.15
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "Book appointment with cardiologist tomorrow at 10 am",
+      "agent_text": "हिंदी सहायता: That slot is already booked. Alternatives are: 2 pm, 4 pm. Preferred hospital on file: Apollo. Suggested options: 2 pm, 4 pm.",
+      "language": "hi",
+      "action": "book",
+      "latency_ms": {
+        "stt": 0.0,
+        "language_detection": 0.1,
+        "reasoning": 0.1,
+        "tool_execution": 0.88,
+        "tts": 7.1
+      }
+    }
+  ],
+  "pat-demo": [
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "book appointment with Dermatologist at 11:00 a.m. tomorrow",
+      "agent_text": "हिंदी सहायता: dermatologist is unavailable at 10 am on tomorrow. Preferred hospital on file: Apollo.",
+      "language": "hi",
+      "action": "book",
+      "latency_ms": {
+        "stt": 0.0,
+        "language_detection": 0.05,
+        "reasoning": 0.11,
+        "tool_execution": 41.69,
+        "tts": 8.88
+      }
+    },
+    {
+      "session_id": "sess-demo-001",
+      "user_text": "okay book appointment with cardiologist at 10:00 a.m. tomorrow",
+      "agent_text": "हिंदी सहायता: Your appointment with Dr Sharma is booked for tomorrow at 10 am. Preferred hospital on file: Apollo.",
+      "language": "hi",
+      "action": "book",
+      "latency_ms": {
+        "stt": 0.01,
+        "language_detection": 0.05,
+        "reasoning": 0.08,
+        "tool_execution": 4.4,
+        "tts": 7.64
+      }
+    }
+  ]
+}

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Appointment Booking System</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: rgba(255, 253, 249, 0.92);
+      --ink: #1c2b2d;
+      --muted: #5d6c6d;
+      --accent: #00796b;
+      --accent-2: #c96c3a;
+      --line: rgba(28, 43, 45, 0.12);
+      --shadow: 0 20px 60px rgba(35, 55, 57, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(0, 121, 107, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(201, 108, 58, 0.18), transparent 28%),
+        linear-gradient(135deg, #f8f4ec, #efe2d1);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(0, 121, 107, 0.08), rgba(201, 108, 58, 0.08));
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 700px;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+    }
+
+    .controls, .chat {
+      padding: 24px;
+    }
+
+    .controls {
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 13px 14px;
+      font: inherit;
+      background: white;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .button-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 8px 24px rgba(0, 121, 107, 0.2);
+    }
+
+    .secondary {
+      background: #fff7f2;
+      color: var(--accent-2);
+    }
+
+    .ghost {
+      background: transparent;
+    }
+
+    .status {
+      font-size: 0.92rem;
+      color: var(--muted);
+      min-height: 1.4em;
+    }
+
+    .chat-log {
+      display: grid;
+      gap: 14px;
+      max-height: 68vh;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .bubble {
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      animation: rise 220ms ease;
+    }
+
+    .user {
+      background: #fdf8f1;
+    }
+
+    .agent {
+      background: #eef7f5;
+    }
+
+    .meta {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .bubble-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .lang-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 76px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(28, 43, 45, 0.12);
+      background: white;
+      color: var(--ink);
+    }
+
+    .lang-en {
+      background: #eef7f5;
+      color: #0e6b60;
+    }
+
+    .lang-hi {
+      background: #fff1e8;
+      color: #af5a22;
+    }
+
+    .lang-ta {
+      background: #eef1fb;
+      color: #445db2;
+    }
+
+    .lang-te {
+      background: #f7eefb;
+      color: #8b46ad;
+    }
+
+    .lang-kn {
+      background: #eefbf4;
+      color: #27804f;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <h1>Clinical Appointment Booking System</h1>
+      <p>Record voice or send typed prompts in English, Hindi, Tamil, Telugu, or Kannada. The agent books, reschedules, cancels, and follows up on appointments over the same real-time socket.</p>
+    </section>
+    <section class="grid">
+      <aside class="controls">
+        <div class="stack">
+          <div>
+            <label for="sessionId">Session ID</label>
+            <input id="sessionId" value="sess-demo-001" />
+          </div>
+          <div>
+            <label for="patientId">Patient ID</label>
+            <select id="patientId">
+              <option value="pat-001">pat-001</option>
+              <option value="pat-002">pat-002</option>
+              <option value="pat-demo">pat-demo</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Typed Prompt</label>
+            <textarea id="message">Book appointment with cardiologist tomorrow at 10 am</textarea>
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="primary" id="connectBtn">Connect</button>
+          <button class="secondary" id="sendBtn">Send Text Turn</button>
+          <button class="primary" id="recordBtn">Start Voice Recording</button>
+          <button class="ghost" id="campaignBtn">Send Reminder Campaign</button>
+        </div>
+        <p class="status" id="status">Socket not connected.</p>
+      </aside>
+      <section class="chat">
+        <div class="chat-log" id="chatLog"></div>
+        <audio id="player" controls style="width:100%; margin-top:18px;"></audio>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const chatLog = document.getElementById("chatLog");
+    const player = document.getElementById("player");
+    const connectBtn = document.getElementById("connectBtn");
+    const sendBtn = document.getElementById("sendBtn");
+    const recordBtn = document.getElementById("recordBtn");
+    const campaignBtn = document.getElementById("campaignBtn");
+    const messageEl = document.getElementById("message");
+    const sessionEl = document.getElementById("sessionId");
+    const patientEl = document.getElementById("patientId");
+
+    let socket = null;
+    let recorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+    let speechRecognition = null;
+    let speechTranscript = "";
+
+    function wsUrl() {
+      const protocol = location.protocol === "https:" ? "wss" : "ws";
+      return `${protocol}://${location.host}/ws/voice`;
+    }
+
+    function languageLabel(code) {
+      const labels = {
+        en: "English",
+        hi: "Hindi",
+        ta: "Tamil",
+        te: "Telugu",
+        kn: "Kannada"
+      };
+      return labels[code] || "Unknown";
+    }
+
+    function addBubble(kind, text, meta = "", language = "") {
+      const node = document.createElement("article");
+      node.className = `bubble ${kind}`;
+      const badge = language
+        ? `<span class="lang-badge lang-${language}">${languageLabel(language)}</span>`
+        : "";
+      node.innerHTML = `
+        <div class="bubble-head">
+          <strong>${kind === "user" ? "Patient" : "Agent"}</strong>
+          ${badge}
+        </div>
+        <div>${text}</div>
+        ${meta ? `<div class="meta">${meta}</div>` : ""}
+      `;
+      chatLog.prepend(node);
+    }
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+    }
+
+    function ensureSocket() {
+      return new Promise((resolve, reject) => {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+          resolve(socket);
+          return;
+        }
+        socket = new WebSocket(wsUrl());
+        socket.onopen = () => {
+          setStatus("Socket connected.");
+          resolve(socket);
+        };
+        socket.onerror = () => reject(new Error("WebSocket connection failed."));
+        socket.onmessage = (event) => {
+          const payload = JSON.parse(event.data);
+          const meta = `Detected: ${languageLabel(payload.detected_language)} | action=${payload.action} | total=${payload.latency_ms.total ?? 0} ms`;
+          addBubble("agent", payload.response_text, meta, payload.detected_language);
+          if (payload.audio_base64) {
+            player.src = `data:audio/wav;base64,${payload.audio_base64}`;
+            player.play().catch(() => {});
+          }
+        };
+        socket.onclose = () => setStatus("Socket disconnected.");
+      });
+    }
+
+    async function sendTextTurn() {
+      const ws = await ensureSocket();
+      const transcript = messageEl.value.trim();
+      if (!transcript) return;
+      addBubble("user", transcript);
+      ws.send(JSON.stringify({
+        type: "text",
+        session_id: sessionEl.value.trim(),
+        patient_id: patientEl.value,
+        transcript
+      }));
+    }
+
+    async function sendVoiceTurn(blob) {
+      const ws = await ensureSocket();
+      const buffer = await blob.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      let binary = "";
+      bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+      const audioBase64 = btoa(binary);
+      addBubble("user", "[Voice message sent]");
+      ws.send(JSON.stringify({
+        type: "audio",
+        session_id: sessionEl.value.trim(),
+        patient_id: patientEl.value,
+        audio_base64: audioBase64,
+        transcript: speechTranscript || undefined,
+        metadata: {
+          audio_format: "webm",
+          transcript: speechTranscript || undefined
+        }
+      }));
+      speechTranscript = "";
+    }
+
+    function setupSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        return null;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = true;
+      recognition.continuous = true;
+      recognition.onresult = (event) => {
+        let latest = "";
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
+          latest += event.results[i][0].transcript;
+        }
+        speechTranscript = latest.trim();
+        if (speechTranscript) {
+          setStatus(`Listening: ${speechTranscript}`);
+        }
+      };
+      recognition.onerror = () => {
+        setStatus("Voice recorded, but browser speech recognition was unavailable.");
+      };
+      return recognition;
+    }
+
+    async function toggleRecording() {
+      if (!isRecording) {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioChunks = [];
+        speechTranscript = "";
+        recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
+        recorder.ondataavailable = (event) => audioChunks.push(event.data);
+        recorder.onstop = async () => {
+          const blob = new Blob(audioChunks, { type: "audio/webm" });
+          if (speechRecognition) {
+            try { speechRecognition.stop(); } catch (_) {}
+          }
+          await sendVoiceTurn(blob);
+          stream.getTracks().forEach((track) => track.stop());
+        };
+        speechRecognition = setupSpeechRecognition();
+        if (speechRecognition) {
+          try { speechRecognition.start(); } catch (_) {}
+        }
+        recorder.start();
+        isRecording = true;
+        recordBtn.textContent = "Stop Voice Recording";
+        setStatus("Recording voice...");
+      } else {
+        recorder.stop();
+        isRecording = false;
+        recordBtn.textContent = "Start Voice Recording";
+        setStatus("Processing voice turn...");
+      }
+    }
+
+    async function triggerCampaign() {
+      const response = await fetch("/campaigns/outbound", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          patient_id: patientEl.value,
+          session_id: sessionEl.value,
+          campaign_type: "reminder"
+        })
+      });
+      const payload = await response.json();
+      addBubble("agent", payload.response_text, "outbound campaign", payload.detected_language);
+      if (payload.audio_base64) {
+        player.src = `data:audio/wav;base64,${payload.audio_base64}`;
+      }
+    }
+
+    connectBtn.addEventListener("click", () => ensureSocket());
+    sendBtn.addEventListener("click", () => sendTextTurn().catch((error) => setStatus(error.message)));
+    recordBtn.addEventListener("click", () => toggleRecording().catch((error) => setStatus(error.message)));
+    campaignBtn.addEventListener("click", () => triggerCampaign().catch((error) => setStatus(error.message)));
+  </script>
+</body>
+</html>
